@@ -34,8 +34,8 @@ public class playerMovement : MonoBehaviour
     }
     void FixedUpdate()
     {
-         Vector3 gravity = globalGravity * gravityScale * Vector3.down;
-
+        Vector3 gravity = globalGravity * gravityScale * Vector3.down;
+        
         if (IsGrounded() && jumpTrue == true)
         {
             Rb.AddForce(0, jumpForce * Time.deltaTime, 0, ForceMode.Impulse);
@@ -49,7 +49,7 @@ public class playerMovement : MonoBehaviour
             Rb.AddForce(gravity * Time.deltaTime, ForceMode.Acceleration);
         }
         
-        Rb.AddForce(Vector3.forward * Speed * Time.deltaTime, ForceMode.VelocityChange);
+        Rb.AddForce(transform.forward * Speed * Time.deltaTime, ForceMode.VelocityChange);
     }
     public bool IsGrounded()
     {
