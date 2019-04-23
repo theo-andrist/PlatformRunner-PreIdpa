@@ -8,7 +8,7 @@ public class CheckEnemyPosition : MonoBehaviour
     public bool blue;
     public bool yellow;
 
-/*  OnTriggerEnter(Collider other){
+ /*  OnTriggerEnter(Collider other){
         if(other.transform.name == "Enemy Red"){
             red = true;
         }
@@ -18,6 +18,7 @@ public class CheckEnemyPosition : MonoBehaviour
         if(other.transform.name == "Enemy Yellow"){
             yellow = true;
         }
+        return red, blue, yellow;
     }
     OnTriggerExit(Collider other){
         if(other.transform.name == "Enemy Red"){
@@ -29,5 +30,6 @@ public class CheckEnemyPosition : MonoBehaviour
         if(other.transform.name == "Enemy Yellow"){
             yellow = false;
         }
+        return red, blue, yellow;
     }*/
 }
