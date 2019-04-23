@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class KillEntities : MonoBehaviour
 {
-    void OnColisionEnter(Collision other){
+    void OnTriggerStay(Collision other){
         if(other.transform.tag == "bot" || other.transform.name == "Player"){
-            Destroy(other.gameObject);
+            Destroy(other.transform.gameObject);
         }
     }
 }

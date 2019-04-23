@@ -27,6 +27,9 @@ public class DestroyCubes : MonoBehaviour
                 Destroy(lastHit.transform.gameObject);
                 lastHitInitializated = false;
             }
+            if ( Input.GetKeyDown(KeyCode.L)){
+                Debug.Log(hit.transform.name + lastHit.transform.name);
+            }
         }        
     }
 }
