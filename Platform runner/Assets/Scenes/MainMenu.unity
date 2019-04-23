@@ -1553,7 +1553,6 @@ GameObject:
   m_Component:
   - component: {fileID: 850831839}
   - component: {fileID: 850831838}
-  - component: {fileID: 850831837}
   m_Layer: 0
   m_Name: Audio Source
   m_TagString: Untagged
@@ -1561,23 +1560,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &850831837
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 850831836}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d0aecfd558da144d84c4ae900abeb4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Mixer: {fileID: 24100000, guid: 07a5214d2d447a04592bd049f04d8e15, type: 2}
-  AudioPanel: {fileID: 462546967}
-  gesamtSlider: {fileID: 0}
-  musikSlider: {fileID: 0}
-  soundSlider: {fileID: 0}
 --- !u!82 &850831838
 AudioSource:
   m_ObjectHideFlags: 0
@@ -8482,7 +8464,6 @@ GameObject:
   - component: {fileID: 2117491605}
   - component: {fileID: 2117491604}
   - component: {fileID: 2117491603}
-  - component: {fileID: 2117491602}
   m_Layer: 5
   m_Name: Start
   m_TagString: Untagged
@@ -8510,18 +8491,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2117491602
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2117491600}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7875608453f258643818c49d4a9a9cf8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2117491603
 MonoBehaviour:
   m_ObjectHideFlags: 0
