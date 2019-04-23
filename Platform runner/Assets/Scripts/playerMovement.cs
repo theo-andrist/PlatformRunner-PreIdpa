@@ -12,12 +12,10 @@ public class playerMovement : MonoBehaviour
 
     public float jumpForce;
 
-    
-
     public float gravityScale = 1.0f;
-    public static float globalGravity = 19.81f;
+    public static float globalGravity = 9.81f;
     
-    public bool jumpTrue;
+    private bool jumpTrue;
     public float Timer;
     private float Countdown; 
 
@@ -42,25 +40,22 @@ public class playerMovement : MonoBehaviour
     void FixedUpdate()
     {
          Vector3 gravity = globalGravity * gravityScale * Vector3.down;
-         
 
         if (IsGrounded() && jumpTrue == true)
         {
             Rb.AddForce(0, jumpForce * Time.deltaTime, 0, ForceMode.Impulse);
         }
-        /* 
         else if (IsGrounded())
         {
-            Rb.useGravity = false;
-            Rb.velocity = new Vector3(0, 0, Rb.velocity.z);
+            Rb.velocity = new Vector3(Rb.velocity.x, 0, Rb.velocity.z);
         }
-        else
+        else if (!IsGrounded())
         {
-            Rb.useGravity = true;
-        }*/
-
-        //Rb.AddForce(0, verticalVelocity, Speed * Time.deltaTime, ForceMode.VelocityChange);
-        Rb.AddForce(gravity, ForceMode.Acceleration);
+            Rb.AddForce(gravity * Time.deltaTime, ForceMode.Acceleration);
+        }
+        
+        Rb.AddForce(Vector3.forward * Speed * Time.deltaTime, ForceMode.VelocityChange);
+        
     }
     bool IsGrounded()
     {
