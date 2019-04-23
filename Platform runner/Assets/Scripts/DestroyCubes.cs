@@ -4,11 +4,26 @@ using UnityEngine;
 
 public class DestroyCubes : MonoBehaviour
 {     
-    void OnCollisionExit(Collision other)
-    {
-        if(other.transform.tag == "Cube")
-        {
-            Destroy(other.gameObject);
-        }
+    public playerMovement pm;
+    float groundRaycastRange;
+    RaycastHit lastHit;
+    RaycastHit hit;
+    bool lastHitInitializated = false;
+    void Start(){
+        groundRaycastRange = pm.RaycastRange + 0.1f;
+    }
+    void Update(){
+        if(pm.IsGrounded()){
+            if (Physics.Raycast(transform.position, Vector3.down, out hit, groundRaycastRange) && hit.collider.tag == "Cube" && !lastHitInitializated)
+            {
+                lastHit = hit;
+                lastHitInitializated = true;
+            }
+            if (lastHit.transform.gameObject != hit.transform.gameObject)
+            {
+                Destroy(lastHit.transform.gameObject);
+                lastHitInitializated = false;
+            }
+        }        
     }
 }

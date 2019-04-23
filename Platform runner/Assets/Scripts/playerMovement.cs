@@ -8,7 +8,7 @@ public class playerMovement : MonoBehaviour
     public float Speed = 15;
     public Rigidbody Rb;
 
-    public float RaycastRange = 1f;
+    public float RaycastRange = 1.1f;
 
     public float jumpForce;
 
@@ -18,11 +18,6 @@ public class playerMovement : MonoBehaviour
     private bool jumpTrue;
     public float Timer;
     private float Countdown; 
-
-    void Start() {
-        //Countdown = Timer;
-
-    }
    
     void Update(){
         if (Input.GetKeyDown(KeyCode.Space) && Countdown <= 0) {
@@ -53,11 +48,10 @@ public class playerMovement : MonoBehaviour
         {
             Rb.AddForce(gravity * Time.deltaTime, ForceMode.Acceleration);
         }
-        
+
         Rb.AddForce(Vector3.forward * Speed * Time.deltaTime, ForceMode.VelocityChange);
-        
     }
-    bool IsGrounded()
+    public bool IsGrounded()
     {
         return Physics.Raycast(transform.position, Vector3.down, RaycastRange);
     }
