@@ -13,6 +13,7 @@ public class DestroyCubes : MonoBehaviour
         groundRaycastRange = pm.RaycastRange + 0.1f;
     }
     void Update(){
+
         if(pm.IsGrounded()){
             
             if (Physics.Raycast(transform.position, Vector3.down, out hit, groundRaycastRange) && hit.collider.tag == "Cube" && !lastHitInitializated)
