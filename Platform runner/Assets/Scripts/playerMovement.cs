@@ -48,7 +48,7 @@ public class playerMovement : MonoBehaviour
         {
             Rb.AddForce(gravity * Time.deltaTime, ForceMode.Acceleration);
         }
-
+        
         Rb.AddForce(Vector3.forward * Speed * Time.deltaTime, ForceMode.VelocityChange);
     }
     public bool IsGrounded()

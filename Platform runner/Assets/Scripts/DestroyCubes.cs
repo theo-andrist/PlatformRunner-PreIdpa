@@ -14,6 +14,7 @@ public class DestroyCubes : MonoBehaviour
     }
     void Update(){
         if(pm.IsGrounded()){
+            
             if (Physics.Raycast(transform.position, Vector3.down, out hit, groundRaycastRange) && hit.collider.tag == "Cube" && !lastHitInitializated)
             {
                 lastHit = hit;
@@ -21,9 +22,14 @@ public class DestroyCubes : MonoBehaviour
             }
             if (lastHit.transform.gameObject != hit.transform.gameObject)
             {
-                Destroy(lastHit.transform.gameObject);
+                Debug.Log("destroy " + lastHit.transform.name);
+                GameObject lastHitObject = lastHit.transform.gameObject;
+                Destroy(lastHitObject);
                 lastHitInitializated = false;
             }
+            if (Input.GetKeyDown(KeyCode.L)){
+            Debug.Log(hit.transform.name + lastHit.transform.name);
+             }
         }        
     }
 }
