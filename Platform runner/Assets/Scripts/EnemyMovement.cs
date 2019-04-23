@@ -11,6 +11,8 @@ public class EnemyMovement : MonoBehaviour
     private Vector3 direction;
 
     private int randomPosition = 0;
+    public float Timer = 1;
+    private float Countdown;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +28,15 @@ public class EnemyMovement : MonoBehaviour
         transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation (direction), 0.9f * Time.deltaTime);
         transform.Translate (0,0, rotationSpeed);
 
-        Random.Range(0, followPoints.Length);
+        
+        
+        if (Countdown > 0) {
 
+            Countdown -= Time.deltaTime;
+        }
+        else {
+            randomPosition = Random.Range(0, followPoints.Length - 1);
+            Countdown = Timer;
+        }
     }
 }
