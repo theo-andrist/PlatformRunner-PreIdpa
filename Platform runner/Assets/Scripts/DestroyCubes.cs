@@ -5,16 +5,29 @@ using UnityEngine;
 public class DestroyCubes : MonoBehaviour
 {     
     public playerMovement pm;
+    public EnemyMovement em;
     float groundRaycastRange;
     RaycastHit lastHit;
     RaycastHit hit;
     bool lastHitInitializated = false;
+    
     void Start(){
-        groundRaycastRange = pm.RaycastRange + 0.1f;
+        if(pm != null)
+        {
+            groundRaycastRange = pm.RaycastRange + 0.1f;
+        }
+        else if(em != null)
+        {
+            groundRaycastRange = em.RaycastRange + 0.1f;
+        }
+        else
+        {
+            Debug.Log("DestroyCubes: Kein Script referenziert");
+        }
     }
     void Update(){
 
-        if(pm.IsGrounded()){
+        if((pm != null && pm.IsGrounded()) || (em != null && em.IsGrounded())){
             
             if (Physics.Raycast(transform.position, Vector3.down, out hit, groundRaycastRange) && hit.collider.tag == "Cube" && !lastHitInitializated)
             {
