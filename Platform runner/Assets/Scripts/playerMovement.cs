@@ -5,18 +5,20 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class playerMovement : MonoBehaviour
 {
-    public float Speed = 15;
+    public GameManager gm;
+
+    public float Speed = 25;
     public Rigidbody Rb;
 
     public float RaycastRange = 1.1f;
 
-    public float jumpForce;
+    public float jumpForce = 660.0f;
 
-    public float gravityScale = 1.0f;
+    public float gravityScale = 200.0f;
     public static float globalGravity = 9.81f;
     
     private bool jumpTrue;
-    public float Timer;
+    public float Timer = 0.2f;
     private float Countdown; 
    
     void Update(){
@@ -35,6 +37,7 @@ public class playerMovement : MonoBehaviour
     }
     void FixedUpdate()
     {
+        if (!gm.gameFinish) {
         Vector3 gravity = globalGravity * gravityScale * Vector3.down;
         
         if (IsGrounded() && jumpTrue == true)
@@ -55,6 +58,7 @@ public class playerMovement : MonoBehaviour
         }*/
         
         Rb.AddForce(transform.forward * Speed * Time.deltaTime, ForceMode.VelocityChange);
+        }
     }
     public bool IsGrounded()
     {
