@@ -9,7 +9,8 @@ public class KillEntities : MonoBehaviour
     public CameraLook cL;
     public GameObject player;
     private Rigidbody rb;
-    public int killcount = 0;
+    private bool gameHasEnded = false;
+    private int killcount = 0;
     void Awake () {
         gameManager = FindObjectOfType<GameManager>();
         pM = FindObjectOfType<playerMovement>();
@@ -19,22 +20,24 @@ public class KillEntities : MonoBehaviour
     }
     void OnTriggerEnter(Collider other){
         
-        if(other.transform.name == "Player"){
+        if(other.transform.name == "Player" && !gameHasEnded){
+            PrepareEndGame();
             gameManager.Lose();
-            pM.enabled = false;
-            cL.enabled = false;
-            rb.useGravity = false;
         }
-        if (other.transform.tag == "Enemy") {
+        if (other.transform.tag == "Enemy" && !gameHasEnded) {
             Destroy(other.gameObject);
             killcount++;
            if (killcount == 3) {
-                gameManager.Win();
-                pM.enabled = false;
-                cL.enabled = false;
-                rb.useGravity = false;
+             PrepareEndGame();
+             gameManager.Win();
             }
             Debug.Log(killcount);
         }
+    }
+    void PrepareEndGame () {
+        gameHasEnded = true;
+        pM.enabled = false;
+        cL.enabled = false;
+        rb.useGravity = false;
     }
 }
