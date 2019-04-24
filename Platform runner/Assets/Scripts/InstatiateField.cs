@@ -12,7 +12,7 @@ public class InstatiateField : MonoBehaviour
 
     private void Awake()
     {
-        Layers = PlayerPrefs.GetInt("DropDownValue");
+        Layers = PlayerPrefs.GetInt("DropDownValue")+1;
 
         Vector3 position = new Vector3(0, 0, 0);
 
