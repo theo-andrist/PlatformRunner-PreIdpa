@@ -6,14 +6,14 @@ public class InstatiateField : MonoBehaviour
 {
 
     public GameObject Prefab;
-    public int Layers = 3;
-    public int Size = 20;
+    private int Layers;
+    public int Size = 21;
     public Transform Parent;
-
-
 
     private void Awake()
     {
+        Layers = PlayerPrefs.GetInt("DropDownValue");
+
         Vector3 position = new Vector3(0, 0, 0);
 
         for (int y = 0; y < Layers; y++)
