@@ -20,6 +20,7 @@ public class playerMovement : MonoBehaviour
     private float Countdown; 
    
     void Update(){
+
         if (Input.GetKeyDown(KeyCode.Space) && Countdown <= 0) {
             jumpTrue = true;
             Countdown = Timer;
@@ -44,15 +45,25 @@ public class playerMovement : MonoBehaviour
         {
             Rb.velocity = new Vector3(Rb.velocity.x, 0, Rb.velocity.z);
         }
-        else if (!IsGrounded())
-        {
+        if(!IsGrounded()){
+
             Rb.AddForce(gravity * Time.deltaTime, ForceMode.Acceleration);
         }
+        /*if(Input.GetKeyDown(KeyCode.L))
+        {
+            Debug.Log(IsGrounded());
+        }*/
         
         Rb.AddForce(transform.forward * Speed * Time.deltaTime, ForceMode.VelocityChange);
     }
     public bool IsGrounded()
     {
-        return Physics.Raycast(transform.position, Vector3.down, RaycastRange);
+        bool _isGrounded = false;
+        RaycastHit hit;
+        if(Physics.Raycast(transform.position, Vector3.down, out hit, RaycastRange) && hit.transform.tag == "Cube")
+        {
+            _isGrounded = true;
+        }
+        return _isGrounded;
     }
 }

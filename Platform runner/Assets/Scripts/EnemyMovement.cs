@@ -86,6 +86,12 @@ public class EnemyMovement : MonoBehaviour
     }
     public bool IsGrounded()
     {
-        return Physics.Raycast(transform.position, Vector3.down, RaycastRange);
+        bool _isGrounded = false;
+        RaycastHit hit;
+        if(Physics.Raycast(transform.position, Vector3.down, out hit, RaycastRange) && hit.transform.tag == "Cube")
+        {
+            _isGrounded = true;
+        }
+        return _isGrounded;
     }
 }
