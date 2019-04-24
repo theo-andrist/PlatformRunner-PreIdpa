@@ -22,6 +22,7 @@ public class KillEntities : MonoBehaviour
         
         if(other.transform.name == "Player" && !gameHasEnded){
             PrepareEndGame();
+            rb.velocity = new Vector3(0,0,0);
             gameManager.Lose();
         }
         if (other.transform.tag == "Enemy" && !gameHasEnded) {
