@@ -23,7 +23,7 @@ public class DestroyCubes : MonoBehaviour
             }
             if (lastHit.transform.gameObject != hit.transform.gameObject)
             {
-                Debug.Log("destroy " + lastHit.transform.name);
+               // Debug.Log("destroy " + lastHit.transform.name);
                 Destroy(lastHit.transform.gameObject);
                 lastHitInitializated = false;
             }
