@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BumpAway : MonoBehaviour
 {
-    public float height;
-    public float distance;
+    public float height = 15;
+    public float distance = 20;
     private Rigidbody rb;
 
     void OnCollisionEnter(Collision other){
