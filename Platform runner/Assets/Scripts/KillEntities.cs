@@ -5,7 +5,6 @@ using UnityEngine;
 public class KillEntities : MonoBehaviour
 {
     public GameManager gameManager;
-    int enemyCounter = 0;
     void OnTriggerStay(Collider other){
         gameManager = FindObjectOfType<GameManager>();
         
@@ -15,8 +14,7 @@ public class KillEntities : MonoBehaviour
         }
         if (other.transform.name == "Enemy") {
             Destroy(other.gameObject);
-            enemyCounter++;
-            if (enemyCounter == 3) {
+            if (OnDestroyEnemys.killcount == 3) {
                 gameManager.Win();
             }
         }
