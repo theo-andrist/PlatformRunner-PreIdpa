@@ -21,24 +21,15 @@ public class KillEntities : MonoBehaviour
     void OnTriggerEnter(Collider other){
         
         if(other.transform.name == "Player" && !gameHasEnded){
-            PrepareEndGame();
-            rb.velocity = new Vector3(0,0,0);
+            
             gameManager.Lose();
         }
         if (other.transform.tag == "Enemy" && !gameHasEnded) {
             Destroy(other.gameObject);
             killcount++;
            if (killcount == 3) {
-             PrepareEndGame();
              gameManager.Win();
             }
-            Debug.Log(killcount);
         }
-    }
-    void PrepareEndGame () {
-        gameHasEnded = true;
-        pM.enabled = false;
-        cL.enabled = false;
-        rb.useGravity = false;
     }
 }
