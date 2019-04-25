@@ -13,8 +13,6 @@ public class BumpAway : MonoBehaviour
             rb = other.gameObject.GetComponent<Rigidbody>();
             rb.AddForce(0, height, 0, ForceMode.Impulse);
             rb.AddForce(transform.forward * distance, ForceMode.Impulse);
-            
-            Debug.Log("weg");
         }
     }
 }
