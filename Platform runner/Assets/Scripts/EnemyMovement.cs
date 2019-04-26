@@ -30,14 +30,24 @@ public class EnemyMovement : MonoBehaviour
     {
         cep = new CheckEnemyPosition[positionCheckBoxes.Length];
 
-        randomPosition = Random.Range(0, followPoints.Length);
+        randomPosition = Random.Range(0, followPoints.Length - 1);
 
         for (int i = 0; i < positionCheckBoxes.Length; i++)
         {
             cep[i] = positionCheckBoxes[i].GetComponent<CheckEnemyPosition>();
         }
+        
     }
-
+    void Update(){
+        if (Countdown > 0) {
+            Countdown -= Time.deltaTime;
+        }
+        if (Countdown <= 0){
+            randomPosition = Random.Range(0, followPoints.Length );
+            Debug.Log(randomPosition);
+            Countdown = Timer;
+        }
+    }
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -46,26 +56,18 @@ public class EnemyMovement : MonoBehaviour
         if (direction != Vector3.zero) {
             transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation (direction), rotationSpeed * Time.deltaTime);
         }
-            transform.Translate (0,0, speed);
-        
-        if (Countdown > 0) {
-            Countdown -= Time.deltaTime;
-        }
-        if (Countdown <= 0){
-            randomPosition = Random.Range(0, followPoints.Length - 1);
-            Countdown = Timer;
-        }
-        if( red && cep[randomPosition].red )  {
+            transform.Translate (0,0, speed);        
+        if( red)  {
             while(cep[randomPosition].red){
             randomPosition = Random.Range(0, followPoints.Length - 1);
             }
         }
-        if( yellow && cep[randomPosition].yellow )  {
+        if( yellow)  {
             while(cep[randomPosition].yellow){
             randomPosition = Random.Range(0, followPoints.Length - 1);
             }
         }
-        if( blue && cep[randomPosition].blue )  {
+        if( blue)  {
             while(cep[randomPosition].blue){
             randomPosition = Random.Range(0, followPoints.Length - 1);
             }
