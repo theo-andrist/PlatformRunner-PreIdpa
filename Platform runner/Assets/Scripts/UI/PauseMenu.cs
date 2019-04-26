@@ -7,6 +7,7 @@ public class PauseMenu : MonoBehaviour
 {
     public static bool gameIsPaused = false;
     public GameObject pauseMenuUI;
+    public CameraLook cl;
 
     void Update()
     {
@@ -21,17 +22,16 @@ public class PauseMenu : MonoBehaviour
             }
         }
     }
-     public void Resume () {
-         pauseMenuUI.SetActive(false);
-         Time.timeScale = 1f;
-         gameIsPaused = false;
-     }
-     void Pause () {
-         pauseMenuUI.SetActive(true);
-         Time.timeScale = 0f;
-         gameIsPaused = true;
-     }
-     public void ExitGame() {
-         SceneManager.LoadScene("MainMenu");
-     }
+    public void Resume () {
+        pauseMenuUI.SetActive(false);
+        cl.enabled = true;
+        Time.timeScale = 1;
+        gameIsPaused = false;
+    }
+    void Pause () {
+        pauseMenuUI.SetActive(true);
+        cl.enabled = false;
+        Time.timeScale = 0;
+        gameIsPaused = true;
+    }
 }

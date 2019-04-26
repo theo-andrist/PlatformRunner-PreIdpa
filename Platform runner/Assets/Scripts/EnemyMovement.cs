@@ -16,13 +16,13 @@ public class EnemyMovement : MonoBehaviour
     private int randomPosition = 0;
     public Transform[] followPoints;
     public GameObject[] positionCheckBoxes;
-    public CheckEnemyPosition[] cep;
+    private CheckEnemyPosition[] cep;
     public float rotationSpeed;
     private Vector3 direction;
     public float Timer = 1;
     private float Countdown;
 
-    
+    public bool ISGROUNDED;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +39,7 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        ISGROUNDED = IsGrounded();
         direction = followPoints[randomPosition].position - transform.position;
         direction.y = 0;
         if (direction != Vector3.zero) {

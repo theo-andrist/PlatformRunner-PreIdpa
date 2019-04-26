@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 public class DestroyCubes : MonoBehaviour
@@ -34,15 +33,22 @@ public class DestroyCubes : MonoBehaviour
                 lastHit = hit;
                 lastHitInitializated = true;
             }
-            if (lastHit.transform.gameObject != hit.transform.gameObject)
-            {
-               // Debug.Log("destroy " + lastHit.transform.name);
+            try {
+                if (lastHit.transform.gameObject != hit.transform.gameObject)
+                {
                 Destroy(lastHit.transform.gameObject);
                 lastHitInitializated = false;
-            }
+                }
+             }
+             catch (Exception e) {
+                lastHit = hit;
+            }  
+            
+            
             if ( Input.GetKeyDown(KeyCode.L)){
                 Debug.Log(hit.transform.name + lastHit.transform.name);
             }
         }        
+        
     }
 }
