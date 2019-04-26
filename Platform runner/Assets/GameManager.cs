@@ -4,30 +4,40 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    bool gameHasEnded = false;
+    //bool gameHasEnded = false;
+    public CameraLook cl;
     public bool gameFinish = false;
     public GameObject loseUI;
     public GameObject winUI;
-    public void EndGame () {
+
+    /*public void EndGame () {
 
         if (gameHasEnded == false)
         {
             gameHasEnded = true;
-           Debug.Log("GameOver"); 
+            Debug.Log("GameOver"); 
+        }
+        
+    }*/
+
+    public void Win () {
+        if(!gameFinish){
+            gameFinish = true;
+            winUI.SetActive(true);
+            pauseGame();
         }
         
     }
-    public void Win () {
-        gameFinish = true;
-        winUI.SetActive(true);
-        
-    }
+
     public void Lose () {
+        if(!gameFinish){
         gameFinish = true;
+        pauseGame();
+        //rb.velocity = new Vector3(0,0,0);
         loseUI.SetActive(true);
-        
+        } 
     }
-   
+
     public void LoadMenu()
     {
         Debug.Log("Loading Menu");
@@ -36,5 +46,14 @@ public class GameManager : MonoBehaviour
     public void QuitGame()
     {
         Debug.Log("Quit Game");
+    }
+
+    void pauseGame () {
+        cl.enabled = false;
+        Time.timeScale = 0;
+        /*gameHasEnded = true;
+        pM.enabled = false;
+        
+        rb.useGravity = false;*/
     }
 }
