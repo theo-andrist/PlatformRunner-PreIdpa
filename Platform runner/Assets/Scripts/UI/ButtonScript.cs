@@ -9,6 +9,14 @@ public class ButtonScript : MonoBehaviour {
     {
         SceneManager.LoadScene(sceneIndex);
     }
+    public void setTimeScale(float setTimeScale)
+    {
+        Time.timeScale = setTimeScale;
+    }
+    public void PlaySound(string name)
+    {
+        FindObjectOfType<audioManager>().Play(name);
+    }
     public void QuitGame()
     {
         Application.Quit();

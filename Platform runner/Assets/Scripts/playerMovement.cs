@@ -21,6 +21,7 @@ public class playerMovement : MonoBehaviour
     public float Timer = 0.2f;
     private float Countdown; 
    
+   private bool wasInAir = false;
     void Update(){
 
         if (Input.GetKeyDown(KeyCode.Space) && Countdown <= 0) {
@@ -43,13 +44,20 @@ public class playerMovement : MonoBehaviour
         if (IsGrounded() && jumpTrue == true)
         {
             Rb.AddForce(0, jumpForce * Time.deltaTime, 0, ForceMode.Impulse);
+            
         }
         else if (IsGrounded())
         {
             Rb.velocity = new Vector3(Rb.velocity.x, 0, Rb.velocity.z);
+
+            if(wasInAir){
+                FindObjectOfType<audioManager>().Play("jump-landing");
+                wasInAir = false;
+            }
         }
         if(!IsGrounded()){
 
+            wasInAir = true;
             Rb.AddForce(gravity * Time.deltaTime, ForceMode.Acceleration);
         }
         /*if(Input.GetKeyDown(KeyCode.L))

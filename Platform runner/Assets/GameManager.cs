@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,16 +8,7 @@ public class GameManager : MonoBehaviour
     public GameObject loseUI;
     public GameObject winUI;
 
-    /*public void EndGame () {
-
-        if (gameHasEnded == false)
-        {
-            gameHasEnded = true;
-            Debug.Log("GameOver"); 
-        }
-        
-    }*/
-
+    public GameObject displayEnemy;
     public void Win () {
         if(!gameFinish){
             gameFinish = true;
@@ -31,29 +20,15 @@ public class GameManager : MonoBehaviour
 
     public void Lose () {
         if(!gameFinish){
-        gameFinish = true;
-        pauseGame();
-        //rb.velocity = new Vector3(0,0,0);
-        loseUI.SetActive(true);
+            gameFinish = true;
+            pauseGame();
+            loseUI.SetActive(true);
         } 
     }
 
-    public void LoadMenu()
-    {
-        Debug.Log("Loading Menu");
-    }
-
-    public void QuitGame()
-    {
-        Debug.Log("Quit Game");
-    }
-
     void pauseGame () {
+        Destroy(displayEnemy);
         cl.enabled = false;
         Time.timeScale = 0;
-        /*gameHasEnded = true;
-        pM.enabled = false;
-        
-        rb.useGravity = false;*/
     }
 }

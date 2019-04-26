@@ -22,7 +22,8 @@ public class EnemyMovement : MonoBehaviour
     public float Timer = 1;
     private float Countdown;
 
-    public bool ISGROUNDED;
+    private bool wasInAir = false;
+    public AudioSource s;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,7 +40,6 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        ISGROUNDED = IsGrounded();
         direction = followPoints[randomPosition].position - transform.position;
         direction.y = 0;
         if (direction != Vector3.zero) {
@@ -79,9 +79,15 @@ public class EnemyMovement : MonoBehaviour
         else if (IsGrounded())
         {
             Rb.velocity = new Vector3(Rb.velocity.x, 0, Rb.velocity.z);
+
+            if(wasInAir){
+                s.Play();
+                wasInAir = false;
+            }
         }
         else if (!IsGrounded())
         {
+            wasInAir = true;
             Rb.AddForce(gravity * Time.deltaTime, ForceMode.Acceleration);
         }
     }
