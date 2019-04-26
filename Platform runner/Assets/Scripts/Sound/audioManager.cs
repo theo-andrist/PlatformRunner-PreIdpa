@@ -5,15 +5,14 @@ using UnityEngine;
 public class audioManager : MonoBehaviour
 {
     public Sound[] sounds;
-    public static audioManager instance;
+    public static audioManager amInstance;
     public AudioMixer mainMixer;
-    public GameObject AudioPanel;
 
     void Awake(){
 
-        if(instance == null)
+        if(amInstance == null)
         {
-            instance = this;
+            amInstance = this;
         }
         else{
             Destroy(gameObject);

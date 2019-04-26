@@ -11,6 +11,7 @@ public class EnemyMovement : MonoBehaviour
     public bool red;
     public float gravityScale = 1.0f;
     public float RaycastRange = 1.1f;
+    public float speed;
 
     public float jumpForce;
     private int randomPosition = 0;
@@ -43,9 +44,9 @@ public class EnemyMovement : MonoBehaviour
         direction = followPoints[randomPosition].position - transform.position;
         direction.y = 0;
         if (direction != Vector3.zero) {
-            transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation (direction), 0.9f * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.LookRotation (direction), rotationSpeed * Time.deltaTime);
         }
-            transform.Translate (0,0, rotationSpeed);
+            transform.Translate (0,0, speed);
         
         if (Countdown > 0) {
             Countdown -= Time.deltaTime;

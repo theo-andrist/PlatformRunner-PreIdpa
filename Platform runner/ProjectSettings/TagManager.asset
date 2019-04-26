@@ -7,6 +7,8 @@ TagManager:
   - DeathCube
   - Cube
   - Enemy
+  - errorMessage
+  - SoundButton
   layers:
   - Default
   - TransparentFX
