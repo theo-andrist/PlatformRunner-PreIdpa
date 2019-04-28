@@ -25,13 +25,16 @@ public class PauseMenu : MonoBehaviour
     public void Resume () {
         pauseMenuUI.SetActive(false);
         displayEnemy.SetActive(true);
+        Cursor.visible = false;
         cl.enabled = true;
         Time.timeScale = 1;
         gameIsPaused = false;
+        
     }
     void Pause () {
         pauseMenuUI.SetActive(true);
         displayEnemy.SetActive(false);
+        Cursor.visible = true;
         cl.enabled = false;
         Time.timeScale = 0;
         gameIsPaused = true;
