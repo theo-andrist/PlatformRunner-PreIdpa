@@ -42,6 +42,7 @@ public class DestroyCubes : MonoBehaviour
              }
              catch (Exception e) {
                 lastHit = hit;
+                e = null;
             }  
             
             
