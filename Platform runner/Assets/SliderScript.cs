@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class AddListenerToEvent : MonoBehaviour
+public class SliderScript : MonoBehaviour
 {
-    public audioManager aM;
+    private audioManager aM;
     public Slider slider;
 
     public bool masterVolume;
@@ -12,19 +12,22 @@ public class AddListenerToEvent : MonoBehaviour
 
     private void Awake()
     {
+        aM = GameObject.FindObjectOfType<audioManager>();
+
         if (masterVolume)
         {
-            aM = GameObject.FindObjectOfType<audioManager>();
+            slider.value = PlayerPrefs.GetFloat("MasterVolumeValue");
             slider.onValueChanged.AddListener(aM.setMasterVolume);
+
         }
         else if (musikVolume)
         {
-            aM = GameObject.FindObjectOfType<audioManager>();
+            slider.value = PlayerPrefs.GetFloat("MusikVolumeValue");
             slider.onValueChanged.AddListener(aM.setMusicVolume);
         }
         else if (soundVolume)
         {
-            aM = GameObject.FindObjectOfType<audioManager>();
+            slider.value = PlayerPrefs.GetFloat("SoundVolumeValue");
             slider.onValueChanged.AddListener(aM.setSoundVolume);
         }
     }
