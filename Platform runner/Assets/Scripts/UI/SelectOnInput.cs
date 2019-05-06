@@ -10,9 +10,12 @@ public class SelectOnInput : MonoBehaviour {
 
     private bool buttonSelected;
 
-	
-	// Update is called once per frame
-	void Update () {
+    private void Awake()
+    {
+        Cursor.visible = true;
+    }
+    // Update is called once per frame
+    void Update () {
         if (Input.GetAxisRaw("Vertical") != 0 && buttonSelected == false)
         {
             eventsystem.SetSelectedGameObject(selectedObject);

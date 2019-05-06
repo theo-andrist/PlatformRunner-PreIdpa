@@ -44,7 +44,6 @@ public class EnemyMovement : MonoBehaviour
         }
         if (Countdown <= 0){
             randomPosition = Random.Range(0, followPoints.Length );
-            Debug.Log(randomPosition);
             Countdown = Timer;
         }
     }

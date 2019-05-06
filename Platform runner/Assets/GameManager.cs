@@ -4,7 +4,7 @@ public class GameManager : MonoBehaviour
 {
     //bool gameHasEnded = false;
     public CameraLook cl;
-    public bool gameFinish = false;
+    public static bool gameFinish = false;
     public GameObject loseUI;
     public GameObject winUI;
 
@@ -30,5 +30,6 @@ public class GameManager : MonoBehaviour
         Destroy(displayEnemy);
         cl.enabled = false;
         Time.timeScale = 0;
+        Cursor.visible = true;
     }
 }
