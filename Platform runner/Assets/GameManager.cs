@@ -9,13 +9,17 @@ public class GameManager : MonoBehaviour
     public GameObject winUI;
 
     public GameObject displayEnemy;
+    private void OnEnable()
+    {
+        Cursor.visible = false;
+    }
+
     public void Win () {
         if(!gameFinish){
             gameFinish = true;
             winUI.SetActive(true);
             pauseGame();
         }
-        
     }
 
     public void Lose () {
@@ -27,6 +31,7 @@ public class GameManager : MonoBehaviour
     }
 
     void pauseGame () {
+        Cursor.visible = true;
         Destroy(displayEnemy);
         cl.enabled = false;
         Time.timeScale = 0;
