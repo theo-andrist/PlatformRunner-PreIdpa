@@ -24,5 +24,9 @@ public class PowerUpManager : MonoBehaviour
             }
         }
     }
+    public void setDisplayText(string text){
+        displaytext.text = text;
+    }
+
 }
 
