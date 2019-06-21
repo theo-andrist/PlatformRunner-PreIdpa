@@ -10,39 +10,16 @@ public class spawnPowerUps : MonoBehaviour
     public float powerUpSpawnTime;
 
     public Vector2 maxXAndZ;
-
-    //werden in GiveEffects verändert (powerActive, pwuInGame)
-    public static bool powerActive = false;
-    private bool timerRunning;
-    public static bool pwuInGame = false;
-
-    void Update()
+      
+    void Awake()
     {
-        if(!powerActive && !timerRunning && !pwuInGame){
-            InvokeRepeating("InstantiatePU",powerUpSpawnTime, 10f);
-            timerRunning = true;
-        }
+        StartCoroutine(InstantiatePU());
     }
+    public IEnumerator InstantiatePU(){
 
-    private void CountDownForPUSpawn(float time){
-
-        if (time > 0)
-        {
-            time -= Time.deltaTime;
-            CountDownForPUSpawn(powerUpSpawnTime);
-        }
-        else{
-
-            InstantiatePU();
-        }
-    }
-    public void InstantiatePU(){
-
-        GameObject pU = Instantiate(prefab, randomPosition(1, maxXAndZ), prefab.transform.rotation, parent);
-        pwuInGame = true;
-        powerActive = true;
-        timerRunning = false;
-        
+        yield return new WaitForSeconds(powerUpSpawnTime);
+        Debug.Log("i");
+        GameObject pU = Instantiate(prefab, randomPosition(1, maxXAndZ), prefab.transform.rotation, parent);        
     }
 
     Vector3 randomPosition(int layer, Vector2 _maxXAndZ)

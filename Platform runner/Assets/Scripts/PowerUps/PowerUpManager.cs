@@ -6,12 +6,10 @@ public class PowerUpManager : MonoBehaviour
 {
     public Text displaytext;
 
-    public float secondsBeforeRemovingText;
-
-    public IEnumerator setDisplayText(string text){
+    public IEnumerator setDisplayText(string text, float duration){
 
         displaytext.text = text;
-        yield return new WaitForSeconds(secondsBeforeRemovingText);
+        yield return new WaitForSeconds(duration);
         displaytext.text = "";
     }
 

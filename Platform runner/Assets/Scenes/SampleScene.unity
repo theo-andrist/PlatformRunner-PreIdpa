@@ -9935,7 +9935,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 3708903372978567705, guid: c0f8a25df6035684e8e52e3e792635d7, type: 3}
   parent: {fileID: 1524636019}
-  powerUpSpawnTime: 0.1
+  powerUpSpawnTime: 3
   maxXAndZ: {x: 30, y: 30}
 --- !u!114 &1524636021
 MonoBehaviour:
@@ -9950,7 +9950,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displaytext: {fileID: 1138956010}
-  secondsBeforeRemovingText: 3
 --- !u!1 &1554741001
 GameObject:
   m_ObjectHideFlags: 0
