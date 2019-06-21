@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Teleport : MonoBehaviour
 {
-    
     private void Update()
     {
         if (Input.GetMouseButton(0) && !PauseMenu.gameIsPaused)

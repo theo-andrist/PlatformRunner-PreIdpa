@@ -11,34 +11,38 @@ public class spawnPowerUps : MonoBehaviour
 
     public Vector2 maxXAndZ;
 
-    //set to true when bonus has ended (bsp. lowGravity fertig)
+    //werden in GiveEffects verändert (powerActive, pwuInGame)
     public static bool powerActive = false;
-    
+    private bool timerRunning;
+    public static bool pwuInGame = false;
+
     void Update()
     {
-        if(powerActive == false;){
-            CountDownForPUSpawn();
+        if(!powerActive && !timerRunning && !pwuInGame){
+            InvokeRepeating("InstantiatePU",powerUpSpawnTime, 10f);
+            timerRunning = true;
         }
     }
-    
-    private void CountDownForPUSpawn(){
 
-        float stCountdown = powerUpSpawnTime;
+    private void CountDownForPUSpawn(float time){
 
-        if (stCountdown > 0)
+        if (time > 0)
         {
-            stCountdown -= Time.deltaTime;
+            time -= Time.deltaTime;
+            CountDownForPUSpawn(powerUpSpawnTime);
         }
         else{
 
             InstantiatePU();
-            stCountdown = powerUpSpawnTime;
         }
     }
     public void InstantiatePU(){
 
         GameObject pU = Instantiate(prefab, randomPosition(1, maxXAndZ), prefab.transform.rotation, parent);
+        pwuInGame = true;
         powerActive = true;
+        timerRunning = false;
+        
     }
 
     Vector3 randomPosition(int layer, Vector2 _maxXAndZ)

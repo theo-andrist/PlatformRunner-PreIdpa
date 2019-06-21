@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3708903372978726453}
   - component: {fileID: 3708903372977432095}
-  - component: {fileID: 3708903372975162079}
   - component: {fileID: 3708903372976301279}
   - component: {fileID: 3708903372968873983}
   m_Layer: 0
@@ -42,19 +41,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3708903372978567701}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!135 &3708903372975162079
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3708903372978567701}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &3708903372976301279
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -153,6 +139,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68c83b36a5710c443aaf861d4631e981, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  powerUps:
+  - name: Teleport
+    duration: 0
+  - name: Switch
+    duration: 0
+  - name: Low Gravity
+    duration: 5
+  - name: Freeze
+    duration: 3
 --- !u!135 &300622344083699497
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -164,7 +159,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.8
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3708903372978567709
 GameObject:
@@ -4910,7 +4905,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3708903372978726463}
   - component: {fileID: 3708903372977432093}
-  - component: {fileID: 3708903372975162077}
   - component: {fileID: 3708903372976301277}
   - component: {fileID: 3708903372968873981}
   m_Layer: 0
@@ -4942,19 +4936,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3708903372978567711}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!135 &3708903372975162077
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3708903372978567711}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &3708903372976301277
 MeshRenderer:
   m_ObjectHideFlags: 0

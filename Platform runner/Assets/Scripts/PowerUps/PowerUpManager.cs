@@ -1,31 +1,18 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class PowerUpManager : MonoBehaviour
 {
-    public bool _resetDisplay;
-
     public Text displaytext;
 
-    private float countdown = 3;
+    public float secondsBeforeRemovingText;
 
-    private void Update()
-    {
-        if (_resetDisplay )
-        {
-            if (countdown > 0)
-            {
-                countdown -= Time.deltaTime;
-            }
-            else
-            {
-                displaytext.text = "";
-                _resetDisplay = false;
-            }
-        }
-    }
-    public void setDisplayText(string text){
+    public IEnumerator setDisplayText(string text){
+
         displaytext.text = text;
+        yield return new WaitForSeconds(secondsBeforeRemovingText);
+        displaytext.text = "";
     }
 
 }

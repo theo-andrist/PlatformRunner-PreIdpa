@@ -9930,14 +9930,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1524636018}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ab015a5265478a48b8cd16e6698ca61, type: 3}
+  m_Script: {fileID: 11500000, guid: 1d14acb68257a3442bd074f729ffcdc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 3708903372978567705, guid: c0f8a25df6035684e8e52e3e792635d7, type: 3}
   parent: {fileID: 1524636019}
-  powerUpSpawnTime: 5
+  powerUpSpawnTime: 0.1
   maxXAndZ: {x: 30, y: 30}
-  powerUpInGame: 0
 --- !u!114 &1524636021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9950,8 +9949,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0752d6a2d871854eb3657ea338d9b66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _resetDisplay: 0
-  displaytext: {fileID: 0}
+  displaytext: {fileID: 1138956010}
+  secondsBeforeRemovingText: 3
 --- !u!1 &1554741001
 GameObject:
   m_ObjectHideFlags: 0
