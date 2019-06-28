@@ -39,8 +39,8 @@ public class DestroyCubes : MonoBehaviour
                 Destroy(lastHit.transform.gameObject);
                 lastHitInitializated = false;
                 }
-             }
-             catch (Exception e) {
+            }
+            catch (Exception e) {
                 lastHit = hit;
                 e = null;
             }  

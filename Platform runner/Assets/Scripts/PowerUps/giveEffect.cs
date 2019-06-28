@@ -12,6 +12,8 @@ public class giveEffect : MonoBehaviour
 
     private spawnPowerUps spwu;
 
+    public ParticleSystem blueFire;
+
     private void Awake()
     {
         enemys = GameObject.FindGameObjectsWithTag("Enemy");
@@ -27,57 +29,68 @@ public class giveEffect : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.name == "Player"){
+            Debug.Log("Picked up");
             Pickup(other.gameObject);
         }
         
     }
     void Pickup(GameObject player){
 
-        int rnd = Random.Range(0, 4 + 1);
+        int rnd = Random.Range(0, 3 + 1);
+        Debug.Log("Pickup() called: rnd = " + rnd);
 
         switch (rnd)
         {
             case 0:
-                Teleport(player);
+                StartCoroutine(Teleport(player));
                 break;
             case 1:
-                SwitchPlace(player);
+                StartCoroutine(SwitchPlace(player));
                 break;
-            case 3:
+            case 2:
                 StartCoroutine(LowGravity(player));
                 break;
-            case 4:
+            case 3:
                 StartCoroutine(Freeze(player));
                 break;
         }
-
-        //Destroy(gameObject);
-        //spawnPowerUps.pwuInGame = false;
+        Debug.Log("Pickup() ended");
     }
-    void Teleport(GameObject player)
+        //needs to wait or pum.setdisplaytext wont reset the display 
+
+    IEnumerator Teleport(GameObject player)
     {
-        StartCoroutine(pum.setDisplayText(powerUps[0].name + " (links-click)", 3));
+        Instantiate(blueFire, transform.position, transform.rotation);
+        disable();
+
         player.AddComponent<Teleport>();
 
-        StartCoroutine(spwu.InstantiatePU());
-        Destroy(gameObject);
+        StartCoroutine(pum.setDisplayText(powerUps[0].name + " (links-click)", powerUps[0].displayDuration));
+        yield return new WaitForSeconds(powerUps[0].displayDuration);
+
+        StartCoroutine(AfterEffectGiven());
     }
-    void SwitchPlace(GameObject player)
-    {
-        StartCoroutine(pum.setDisplayText("switched", 2));
+    //needs to wait or pum.setdisplaytext wont reset the display 
+    IEnumerator SwitchPlace(GameObject player)
+    {       
+        Instantiate(blueFire, transform.position, transform.rotation);
+        disable();
 
         int r = Random.Range(0, 3);
 
         Vector3 placeHolder = player.transform.position;
         player.transform.position = enemys[r].transform.position; 
         enemys[r].transform.position = placeHolder;
+        
+        StartCoroutine(pum.setDisplayText("switched", powerUps[1].displayDuration));
+        yield return new WaitForSeconds(powerUps[1].displayDuration);
 
-        StartCoroutine(spwu.InstantiatePU());
-        Destroy(gameObject);
+        StartCoroutine(AfterEffectGiven());
     }
     IEnumerator LowGravity(GameObject player)
     {
-        StartCoroutine(pum.setDisplayText(powerUps[2].name + "!!!", powerUps[2].duration));
+        Instantiate(blueFire, transform.position, transform.rotation);
+        disable();
 
         player.GetComponent<playerMovement>().gravityScale -= 100;
 
@@ -86,30 +99,43 @@ public class giveEffect : MonoBehaviour
         Destroy(gameObject.transform.GetChild(2).gameObject);
         GetComponent<Collider>().enabled = false;
 
+        StartCoroutine(pum.setDisplayText(powerUps[2].name + "!!!", powerUps[2].displayDuration));
         yield return new WaitForSeconds(powerUps[2].duration);
 
         player.GetComponent<playerMovement>().gravityScale += 100;
 
-        StartCoroutine(spwu.InstantiatePU());
-        Destroy(gameObject);
-        
+        StartCoroutine(AfterEffectGiven());        
     }
+
     IEnumerator Freeze(GameObject player)
     {
-        StartCoroutine(pum.setDisplayText(powerUps[3].name + "!", powerUps[3].duration));
+        Instantiate(blueFire, transform.position, transform.rotation);
+        disable();
 
+        StartCoroutine(pum.setDisplayText(powerUps[3].name + "!", powerUps[3].displayDuration));
         player.GetComponent<Rigidbody>().isKinematic = true;
-
-        Destroy(gameObject.transform.GetChild(0).gameObject);
-        Destroy(gameObject.transform.GetChild(1).gameObject);
-        Destroy(gameObject.transform.GetChild(2).gameObject);
-        GetComponent<Collider>().enabled = false;
 
         yield return new WaitForSeconds(powerUps[3].duration);
 
         player.GetComponent<Rigidbody>().isKinematic = false;
 
-        StartCoroutine(spwu.InstantiatePU());
-        Destroy(gameObject);
+        StartCoroutine(AfterEffectGiven());
     }
+    
+    private void disable(){
+
+        Destroy(gameObject.transform.GetChild(0).gameObject);
+        Destroy(gameObject.transform.GetChild(1).gameObject);
+        Destroy(gameObject.transform.GetChild(2).gameObject);
+        GetComponent<Collider>().enabled = false;
+    }
+
+    IEnumerator AfterEffectGiven(){
+
+        //needs to wait or pum.setdisplaytext wont instatiate the pwup 
+        StartCoroutine(spwu.InstantiatePU());
+        yield return new WaitForSeconds(spwu.powerUpSpawnTime);
+
+        Destroy(gameObject);
+    }    
 }

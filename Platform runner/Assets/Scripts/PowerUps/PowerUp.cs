@@ -8,4 +8,6 @@ public class PowerUp
     public string name;
 
     public float duration;
+
+    public float displayDuration;
 }

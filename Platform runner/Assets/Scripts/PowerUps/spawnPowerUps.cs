@@ -7,18 +7,21 @@ public class spawnPowerUps : MonoBehaviour
     public GameObject prefab;
     public Transform parent;
 
-    public float powerUpSpawnTime;
+    public float powerUpSpawnTime { get; }
 
     public Vector2 maxXAndZ;
       
     void Awake()
     {
+        //macht no nüt
+        int Layers = PlayerPrefs.GetInt("DropDownValue") +1;
+
+        
         StartCoroutine(InstantiatePU());
     }
     public IEnumerator InstantiatePU(){
-
         yield return new WaitForSeconds(powerUpSpawnTime);
-        Debug.Log("i");
+        Debug.Log("PowerUp spawned");
         GameObject pU = Instantiate(prefab, randomPosition(1, maxXAndZ), prefab.transform.rotation, parent);        
     }
 

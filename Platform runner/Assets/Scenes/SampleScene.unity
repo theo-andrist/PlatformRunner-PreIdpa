@@ -9935,7 +9935,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 3708903372978567705, guid: c0f8a25df6035684e8e52e3e792635d7, type: 3}
   parent: {fileID: 1524636019}
-  powerUpSpawnTime: 3
   maxXAndZ: {x: 30, y: 30}
 --- !u!114 &1524636021
 MonoBehaviour:
